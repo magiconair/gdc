@@ -44,7 +44,6 @@ func main() {
 				Name  string `json:"name"`
 				Count int    `json:"download_count"`
 			}
-			Date string `json:"updated_at"`
 		}
 		if err := json.Unmarshal(data, &x); err != nil {
 			log.Printf("Failed to unmarshal releases for %s. %s", repo, err)
@@ -53,7 +52,7 @@ func main() {
 
 		for _, o := range x {
 			for _, a := range o.Assets {
-				fmt.Printf("%d\t%s\t%s\n", a.Count, o.Date, a.Name)
+				fmt.Printf("%d\t%s\n", a.Count, a.Name)
 				total += a.Count
 			}
 		}
